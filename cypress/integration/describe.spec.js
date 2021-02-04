@@ -19,14 +19,14 @@ describe('Grupo 1 de varios test dentro desse Describe', () => {
 
 describe(' Grupo 2 de varios test dentro desse Describe', () => {
 
-   describe('Outro Grupo de varios tests', () => {
+    describe('Outro Grupo de varios tests', () => {
 
-    it.skip('Test interno 1', () => {
+        it.skip('Test interno 1', () => {
 
+        })
+
+        it.only('Test interno 2', () => {
+
+        })
     })
-
-    it.only('Test interno 2', () => {
-
-    })
-})
 })
