@@ -70,4 +70,28 @@ describe('Grupos de como usar as Assertivas nos tests.', () => {
         expect([]).to.be.an('array')
 
     })
+
+    it('Assertivas com Strings', () => {
+        const str = 'Cypress na pratica'
+
+        expect(str).to.be.equal('Cypress na pratica')
+        expect(str).to.have.length(18)
+        expect(str).to.have.contains('Cy')
+        expect(str).to.match(/na/)
+        expect(str).to.match(/^Cypress/)
+        expect(str).to.match(/pratica$/)
+        expect(str).to.match(/.{18}/)
+        expect(str).to.match(/\w/)
+        expect(str).to.match(/\D/)
+    })
+
+    it('Assertivas com Numbers', () => {
+        const int = 99
+        const floatNum = 87.9796
+        
+        expect(int).to.be.equal(99)
+        expect(floatNum).to.be.above(50) //acima de um numero 
+        expect(floatNum).to.be.below(90) //abaixo de um numero
+        expect(floatNum).to.be.closeTo(87, 0.1)
+    }) 
 })
