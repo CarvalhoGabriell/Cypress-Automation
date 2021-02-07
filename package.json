@@ -1,6 +1,6 @@
 {
   "name": "curso-cypress",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Curso introdutorio e aprofundado de Cypress.",
   "main": "index.js",
   "scripts": {
