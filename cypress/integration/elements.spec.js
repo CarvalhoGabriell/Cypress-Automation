@@ -83,7 +83,7 @@ describe('Mia interações de elementos na tela' ,() => {
         cy.visit('https://www.amazon.com.br')
     })
 
-    it.only('Selecionando multiplos CheckBox', ()=> {
+    it('Selecionando multiplos CheckBox', ()=> {
 
         cy.title()
             .should('contain', 'Amazon.com.br')
@@ -95,7 +95,78 @@ describe('Mia interações de elementos na tela' ,() => {
         cy.title()
             .should('have.contain', 'Monitores')
 
-        cy.get('[type=checkbox]')
-            .click({multiple: true})
+        // cy.get('[type=checkbox]')
+        //     .click({multiple: true})
+
+       cy.get('#brandsRefinements ul li label')
+                .should('have.length', 10)
+    })
+
+    it('Uso de wait e Timeouts', ()=> {
+        /* Para setar um timeout para o test todo
+            pode colocar um ""defaultCommandTimeout": {numero do timeout}"
+            e assim esse parametro sera usado em todos os test.Porem so é recomendado em casos expecificos
+        */
+        cy.get('[href="/gp/goldbox?ref_=nav_cs_gb_db0e02a5f1234e4b9b88922049cb571c"]').click()
+
+        /* Ja o metodo wait() vai ser executado na hora q for chamado e ira prendedr o cypress 
+            na quantidade de tempo especificado e ai sim executar o proximo comando
+        cy.wait(5000)
+        */
+        cy.title().should('contains', 'Ofertas do Dia na Amazon.com.br')
+        
+    })
+})
+
+
+describe('Uso de Should() vs Then()', () => {
+    
+    before(() => {
+        cy.visit('https://www.nerdaocubo.com.br')
+    })
+    it.only('Capturando um elemento HTML', () => {
+
+        // cy.get('.cc-ALLOW').click()
+        // cy.get('.box-banner .conteudo-text').then($html=> {
+
+        //     console.log($html)
+        //     expect($html).to.have.length(3)
+        // })
+
+        // cy.get('.cc-ALLOW').click()
+        // cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
+
+        //     console.log($html)
+        //     expect($html).to.have.length(3)
+        //     return $html
+        // }).and('contain.text',' ao Cubo')
+
+        // cy.get('.cc-ALLOW').click()
+        // cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
+
+        //     console.log($html)
+        //     expect($html).to.have.length(3)
+        //     return 10
+        // }).and('to.eql',10)
+
+        /* Nos dois casos acima os valores dos Returns sao diferentes e mesmo assim o test passou
+            isso acontece pois o Then() aceita mudar o valor do seu Return, já o Should() só da como
+            Return o proprio valor do Promise, dessa forma nao podendo passar outros valores.
+        */
+
+
+        /* No caso abaixo quando voce quise fazer novas buscas ou asserts de Elementos distintos,
+            o ideal é usar o .Then() em vez de .Should(), pois o should() ora fazer varias tentativas
+            e ficara em um looping infinito ou pode dar erro.
+        */
+        cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
+            cy.get('.cc-ALLOW').click()
+            expect($html).to.have.length(3)
+
+            cy.get('.content > .quero > a')
+                .should('contain.text', 'Quero')
+        })
+
+
     })
 })

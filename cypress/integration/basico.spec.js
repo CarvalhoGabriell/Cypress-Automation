@@ -32,4 +32,17 @@ describe('Coisas básicas no Cypress', () => {
         cy.get('[for="tab4code0"]').click()
         
     })
+
+    it.only('Imprimindo o valor do Titulo no console', () => {
+        cy.visit('https://www.selenium.dev/documentation/en/webdriver/')
+
+        // cy.title().then(title => {
+        //     console.log(title)
+        // })
+
+        cy.title().should(title => {
+            console.log(title)
+        })
+
+    })
 } )
