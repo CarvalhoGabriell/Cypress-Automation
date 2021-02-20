@@ -126,28 +126,28 @@ describe('Uso de Should() vs Then()', () => {
     })
     it.only('Capturando um elemento HTML', () => {
 
-        // cy.get('.cc-ALLOW').click()
-        // cy.get('.box-banner .conteudo-text').then($html=> {
+        cy.get('.cc-ALLOW').click()
+        cy.get('.box-banner .conteudo-text').then($html=> {
 
-        //     console.log($html)
-        //     expect($html).to.have.length(3)
-        // })
+            console.log($html)
+            expect($html).to.have.length(3)
+        })
 
-        // cy.get('.cc-ALLOW').click()
-        // cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
+        cy.get('.cc-ALLOW').click()
+        cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
 
-        //     console.log($html)
-        //     expect($html).to.have.length(3)
-        //     return $html
-        // }).and('contain.text',' ao Cubo')
+            console.log($html)
+            expect($html).to.have.length(3)
+            return $html
+        }).and('contain.text',' ao Cubo')
 
-        // cy.get('.cc-ALLOW').click()
-        // cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
+        cy.get('.cc-ALLOW').click()
+        cy.get('.box-banner .conteudo-text .conteudo-title').then($html=> {
 
-        //     console.log($html)
-        //     expect($html).to.have.length(3)
-        //     return 10
-        // }).and('to.eql',10)
+            console.log($html)
+            expect($html).to.have.length(3)
+            return 10
+        }).and('to.eql',10)
 
         /* Nos dois casos acima os valores dos Returns sao diferentes e mesmo assim o test passou
             isso acontece pois o Then() aceita mudar o valor do seu Return, já o Should() só da como
