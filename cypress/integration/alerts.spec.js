@@ -98,6 +98,5 @@ describe('Como utilizar o Cypress para eventos de Alerts.', () => {
 
         cy.get('#resultado > :nth-child(1)').should('contain','Cadastrado')
 
-        
     })
 })
