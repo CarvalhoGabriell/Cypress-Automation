@@ -16,8 +16,6 @@ describe('Helpers....', () => {
         cy.get('.cc-ALLOW').click()
         cy.get('[type="text"]').type('sem utilizar o wrap com cypress')
 
-   
-
         cy.get('.cc-ALLOW').click()
         cy.get('[type="text"]').then(input => {
 
