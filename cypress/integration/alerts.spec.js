@@ -7,13 +7,15 @@ describe('Como utilizar o Cypress para eventos de Alerts.', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
 
-    it('Alerts()...', ()=>{
+    it.only('Alerts()...', ()=>{
 
-        cy.get('#alert').click()
-        cy.on('window:alert', msg => {
-            console.log(msg)
-            expect(msg).to.be.equal('Alert Simples')
-        })
+        // cy.get('#alert').click()
+        // cy.on('window:alert', msg => {
+        //     console.log(msg)
+        //     expect(msg).to.be.equal('Alert Simples')
+        // })
+
+        cy.clickAlerts('#alert', 'Alert Simples')
 
     })
 
@@ -72,7 +74,7 @@ describe('Como utilizar o Cypress para eventos de Alerts.', () => {
         cy.get('#prompt').click()
     })
 
-    it.only('Validando mensagens de cadastro.', () =>{
+    it('Validando mensagens de cadastro.', () =>{
 
         const stub = cy.stub().as('alertas')
         const nome = 'Gabriel'
