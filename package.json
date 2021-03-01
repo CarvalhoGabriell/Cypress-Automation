@@ -9,7 +9,9 @@
   },
   "author": "Gabriel Carvalho",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "cypress-xpath": "^1.6.2"
+  },
   "devDependencies": {
     "cypress": "^6.5.0"
   }
