@@ -1,6 +1,6 @@
 {
   "name": "curso-cypress",
-  "version": "1.10.0",
+  "version": "2.0.0",
   "description": "Curso introdutorio e aprofundado de Cypress.",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,10 @@
   },
   "author": "Gabriel Carvalho",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "cypress-xpath": "^1.6.2"
+  },
   "devDependencies": {
-    "cypress": "^6.5.0"
+    "cypress": "^6.8.0"
   }
 }

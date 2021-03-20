@@ -33,16 +33,29 @@ describe('Coisas básicas no Cypress', () => {
         
     })
 
-    it.only('Imprimindo o valor do Titulo no console', () => {
-        cy.visit('https://www.selenium.dev/documentation/en/webdriver/')
+    it.only('Reaproveitando o valor do Titulo da Pagina.', () => {
+        cy.visit('https://www.clickbus.com.br')
+        cy.title().should('be.equal', 'Passagem de Ônibus | ClickBus')
 
-        // cy.title().then(title => {
-        //     console.log(title)
-        // })
 
-        cy.title().should(title => {
-            console.log(title)
+        // Utilizado quando vc precisar recuperar um valor e utilizar ele em outros elementos.
+        let sincTitle
+
+        cy.title().then(titlePage => {
+            console.log(titlePage)
+            
+            cy.get('#widget-vertical-origin-place').type(titlePage)
+
+             // Utilizado quando vc precisar recuperar um valor e utilizar ele em outros elementos.
+            sincTitle = titlePage
         })
+
+        cy.get('#widget-vertical-destination-place').then(texto => {
+
+            cy.wrap(texto).type(sincTitle)
+        })
+
+        
 
     })
 } )
