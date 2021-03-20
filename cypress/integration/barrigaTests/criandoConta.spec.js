@@ -1,12 +1,12 @@
 /// <reference types="cypress"/>
 import loc from '../../support/locators'
-import cmd from '../../support/commands'
+
 // GabsTest  1234
 describe('Fazendo o Login e validando mensagem de sucesso', () => {
 
     before(() => {
-        cy.cmd.loginApp('gabTest@test.com', '1234')
-        cy.cmd.resetDados()
+        cy.loginApp('gabTest@test.com', '1234')
+        cy.resetDados()
     })
 
     it('Inserir/ Criar uma conta.', () => {
