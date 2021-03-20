@@ -6,7 +6,7 @@ describe('Utilizando a funcionalidade Fixtures do cypress', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
     })
 
-    it('Populanod cadastro com arquivo de fixture', ()=> {
+    it('Populando cadastro com arquivo de fixture', ()=> {
         cy.fixture('userData').as('user').then(function() {
             cy.get('#formNome').type(this.user.nome)
             cy.get('[data-cy=dataSobrenome]').type(this.user.sobrenome)
