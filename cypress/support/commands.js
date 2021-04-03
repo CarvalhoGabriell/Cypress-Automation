@@ -39,8 +39,8 @@ Cypress.Commands.add('loginApp', (user, password) => {
     cy.get(loc.LOGIN.USER).type(user)
     cy.get(loc.LOGIN.PASSWORD).type(password)
     cy.get(loc.LOGIN.BTN_LOGIN).click()
-    cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
-    cy.get(loc.BTN_CLOSE_MSG).click()
+    cy.get(loc.MESAGE_ALERT.MESSAGE).should('contain', 'Bem vindo')
+    cy.get(loc.MESAGE_ALERT.BTN_CLOSE_MSG).click()
 
 })
 
