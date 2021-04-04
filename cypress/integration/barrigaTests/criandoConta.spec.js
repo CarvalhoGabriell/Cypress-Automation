@@ -4,7 +4,7 @@ import '../../support/commandsConta'
 
 
 // GabsTest  1234
-describe('Fazendo o Login e validando mensagem de sucesso', () => {
+describe('Criando todo o fluxo dentro da aplicação do Seubarriga react', () => {
 
     before(() => {
         cy.loginApp('gabTest@test.com', '1234')
