@@ -39,12 +39,41 @@ Cypress.Commands.add('loginApp', (user, password) => {
     cy.get(loc.LOGIN.USER).type(user)
     cy.get(loc.LOGIN.PASSWORD).type(password)
     cy.get(loc.LOGIN.BTN_LOGIN).click()
-    cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
-    cy.get(loc.BTN_CLOSE_MSG).click()
+    cy.get(loc.MESAGE_ALERT.MESSAGE).should('contain', 'Bem vindo')
+    cy.get(loc.MESAGE_ALERT.BTN_CLOSE_MSG).click()
 
 })
 
 Cypress.Commands.add('resetDados', () => {
     cy.get(loc.MENU.SETTING).click()
     cy.get(loc.MENU.RESET).click()
+})
+
+
+Cypress.Commands.add('getToken', (user, password) => {
+    cy.request({
+        url: '/signin',
+        method: "POST",
+        body: {
+            email:	user,
+            redirecionar:	false,
+            senha: password
+        }
+    }).its('body.token').should('not.be.empty')
+        .then(token => {
+            return token
+        })
+})
+
+
+Cypress.Commands.add('resetAPI', () => {
+    cy.getToken('gabTest@test.com', '1234').then(token => {
+
+        cy.request({
+            url: '/reset',
+            method: 'GET',
+            headers: {Authorization: `JWT ${token}`},
+
+        }).its('status').should('be.equal', 200)
+    })
 })
