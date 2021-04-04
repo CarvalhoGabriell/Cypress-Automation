@@ -48,3 +48,32 @@ Cypress.Commands.add('resetDados', () => {
     cy.get(loc.MENU.SETTING).click()
     cy.get(loc.MENU.RESET).click()
 })
+
+
+Cypress.Commands.add('getToken', (user, password) => {
+    cy.request({
+        url: '/signin',
+        method: "POST",
+        body: {
+            email:	user,
+            redirecionar:	false,
+            senha: password
+        }
+    }).its('body.token').should('not.be.empty')
+        .then(token => {
+            return token
+        })
+})
+
+
+Cypress.Commands.add('resetAPI', () => {
+    cy.getToken('gabTest@test.com', '1234').then(token => {
+
+        cy.request({
+            url: '/reset',
+            method: 'GET',
+            headers: {Authorization: `JWT ${token}`},
+
+        }).its('status').should('be.equal', 200)
+    })
+})
