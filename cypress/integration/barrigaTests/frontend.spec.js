@@ -6,31 +6,102 @@ import '../../support/commandsConta'
 // GabsTest  1234
 describe('Criando todo o fluxo dentro da aplicação do Seubarriga react', () => {
 
+    // limpa o problema dos dados guardados pelo storage da aplicação
+    after(() => {
+        cy.clearLocalStorage()
+    })
+
     before(() => {
         cy.intercept({
             method: 'POST',
             url: '/signin',
             response: {
-                
+                id: 1000,
+                nome: 'uSER FAKE',
+                token: 'Uma string gigante no lugar do token verdadeiro'
             }
 
-        })
+        }).as('signin')
+
+        cy.intercept({
+            method: 'GET',
+            url: '/saldo',
+            response: [{
+                conta_id: 250,
+                conta: "Saldo fake",
+                saldo: "10000000"
+
+            },
+            {
+                conta_id: 888,
+                conta: "Conta fake 2",
+                saldo: "23290"
+            }
+            ]
+
+        }).as('saldos')
+        
         cy.loginApp('gabTest@test.com', '1234')
     })
     
     beforeEach(()=> {
         cy.get(loc.MENU.HOME).click()
-        cy.resetDados()
+        //cy.resetDados()
     })
 
     it('Inserir/ Criar uma conta.', () => {
+        cy.intercept({
+
+            method: 'POST',
+            url:'/contas',
+            response: [
+                {id: 1, nome:'Wallet', visivel: true, usuario_id: 1},
+                {id: 2, nome:'Banco account', visivel: true, usuario_id: 1}
+            ]
+        }).as('contas')
+
+        cy.intercept({
+
+            method: 'POST',
+            url:'/contas',
+            response: {
+                id: 3, 
+                nome:'Contas test', 
+                visivel: true, 
+                usuario_id: 1
+                
+            }
+        }).as('salvando')
+
         cy.acessarMenuConta()
-        cy.inserirNovaConta('Conta nubank')
+
+        cy.intercept({
+
+            method: 'POST',
+            url:'/contas',
+            response: [
+                {id: 1, nome:'Wallet', visivel: true, usuario_id: 1},
+                {id: 2, nome:'Banco account', visivel: true, usuario_id: 1},
+                {id: 3, nome:'Conta test', visivel: true, usuario_id: 1}
+            ]
+        }).as('contasSave')
+
+        cy.inserirNovaConta('Conta test')
         cy.get(loc.MESAGE_ALERT.MESSAGE).should('contain', 'Conta inserida com sucesso!')
     })
 
     it('Alterando conta criada', () => {
 
+        cy.intercept({
+
+            method: 'GEST',
+            url:'/contas',
+            response: [
+                {id: 1, nome:'Wallet', visivel: true, usuario_id: 1},
+                {id: 2, nome:'Banco account', visivel: true, usuario_id: 1}
+            ]
+        }).as('contas')
+ 
         cy.acessarMenuConta()
         cy.xpath(loc.ADD_CONTA.FN_XPATH_CONTA('Conta para alterar')).click()
         cy.get(loc.ADD_CONTA.NOME_CONTA).clear().type('Conta next') // altera o nome da conta alterada

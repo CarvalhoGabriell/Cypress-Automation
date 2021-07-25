@@ -77,7 +77,7 @@ describe('Interagindo com mais elementos da tela', () => {
     })
 })
 
-describe('Mia interações de elementos na tela' ,() => {
+describe('Mais interações de elementos na tela' ,() => {
 
     before(() => {
         cy.visit('https://www.amazon.com.br')
