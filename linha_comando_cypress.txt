@@ -1,0 +1,18 @@
+
+LINHA DE COMANDO DO CYPRESS:
+
+- Iniciar cypress -> npm run cyopen
+
+LINHA DE COMANDO DO CYPRESS
+
+- Caminho padrão para chamar as execuções do cypress sem configurar no arquivo package.jon
+	= ./node_modules/.bin/cypress run --spec cypress/{nome_pasta}/{outra_pasta}/{nome_do_arquivo_desejado}
+
+- rodar todos os testes com cypress
+	= configurar o comando no arquivo package.json
+	= npm run cypress:run (comando para rodar tudo)
+
+	= npm run cypress:run -- --spec cypress/{nome_pasta}/{outra_pasta}/{nome_do_arquivo_desejado} (comando para rodar um arquivo especifico)
+	= npm run cypress:run -- --spec cypress/{nome_pasta}/{outra_pasta}/{nome_do_arquivo_desejado} --headed (subir o browser e acompanhar a execução)
+	= npm run cypress:run -- --spec cypress/{nome_pasta}/{outra_pasta}/{nome_do_arquivo_desejado} --headed --no-exit (a tela fica travada no erro para poder verificar onde deu o erro)
+	= npm run cypress:run -- --spec cypress/{nome_pasta}/{outra_pasta}/{nome_do_arquivo_desejado} --browser {nome_browser}
